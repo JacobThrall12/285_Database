@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>View Teams</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+
+
+<body>
+    <div class="mvpBlock">
+        <h1>View Teams</h1>
+        <div class="col-12">
+            <a class="insertLink" href="submissions.html">View Pokemon</a>
+        </div>
+        <div class='row'>
+            <div class='col-12'>
+                <button id='submit'>Search for Teams</button>
+            </div>
+        </div>
+        <hr />
+        <div class='formDataTable'>
+            <div id='newFormData' class='overflow'>
+            </div>
+        </div>
+
+
+
+
+        <hr />
+</body>
+<script>
+    //Hide banner at start of script
+    const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+    document.getElementById('submit').addEventListener('click', () => {
+        //const formData = new FormData();
+        const getParameters = {};
+       
+
+        let fetchSettings = {
+            method: 'GET',
+        };
+        //This should be in the fetchSettings but it doesn't work idk 
+        fetch("http://localhost/teams/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            .then(({ status, json }) => {
+                {
+                    let displayTable = '';
+                    if (typeof json.data !== 'undefined') {
+                        for (const row of json.data) {
+
+                            displayTable += '<div class="card">' +
+
+                                '<div class="card-content">' +
+                                '<table class="table">' +
+                                '<tbody>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Pokemon Name:</strong></td>' +
+                                '<td colspan="2">' + row.name + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Team Name:</strong></td>' +
+                                '<td colspan="2">' + row.team_name + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Position On Team:</strong></td>' +
+                                '<td colspan="2">' + row.position + '</td>' +
+                                '</tr>' +
+                                
+                                '</tbody>' +
+                                '</table>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                    }
+                    document.getElementById("newFormData").innerHTML = displayTable;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        return;
+    })
+
+
+</script>
+
+</html>

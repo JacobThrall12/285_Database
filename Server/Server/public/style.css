@@ -1,0 +1,304 @@
+/** Grid system - https://www.w3schools.com/css/css_rwd_grid.asp **/
+* {
+    box-sizing: border-box;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+ 
+  @media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+html{
+    background-image: url("https://i.redd.it/7v74fo3go0a51.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    
+}
+body{
+    background-color: #b798f0ef;
+    width: 75%;
+    margin: 0 auto;
+}
+/** Image - https://www.w3schools.com/css/css_rwd_grid.asp **/   
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/** Overflow (for tables) - https://www.w3schools.com/howto/howto_css_table_responsive.asp **/
+.overflow {
+    overflow-x:auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }
+
+th {
+    width: 33.3%
+}
+.alert-error {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+.alert-sucess{
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #219931;
+    background-color: #d7f8e5;
+    border-color: #c2f5d6;
+}
+.error-message{
+    color: red;
+}
+/* Style for the main container */
+
+  
+  /* Style for the table */
+  table {
+    border-collapse: collapse;
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  th,
+  td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+   .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+  }
+
+  /* Style the card */
+  .card {
+    background-color: #93e2b767;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    flex-direction: column;
+    overflow: hidden;
+    width: 300px;
+    margin: 1em 1.5em;
+    
+  }
+
+
+  /* Style the card image */
+  .card-image {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  /* Style the card content */
+  .card-content {
+    padding: 20px;
+  }
+
+  /* Style the card title */
+  .card-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  /* Style the card subtitle */
+  .card-header-title {
+    color: white;
+    text-decoration: none;
+    margin: 1em;
+    padding: 1em;
+    font-size: 1.2em;
+    font-weight:bold;
+    background-color: #93e2b6;
+    border-radius: 10px;   
+  }
+
+  /* Style the card text */
+  .card-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  /* style for the main section */
+
+  
+  /* style for the header */
+   h1 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-align: center;
+    color:white;
+    padding: 1em;
+    background-color: #93e2b6;
+    border-radius: 10px;
+  }
+  
+  /* style for the labels */
+   label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* style for the select boxes */
+   select {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* style for the text input */
+   input[type="text"] {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* style for the checkbox */
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* style for the submit button */
+  #submit {
+    background-color: #93e2b6;
+    color: #fff;
+    border: none;
+    padding: 1em 2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: block;
+    width: 50%;
+    margin: 1.5em auto;
+    text-align: center;
+  }
+  
+  #submit:hover {
+    background-color: #6ca586;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  #search {
+    background-color: #93e2b6;
+    color: #fff;
+    border: none;
+    padding: 1em 2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: block;
+    width: 50%;
+    margin: 1.5em auto;
+    text-align: center;
+  }
+  
+  #search:hover {
+    background-color: #6ca586;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  
+  /* style for the link */
+  .insertLink {
+    color: white;
+    text-decoration: none;
+    margin: 1em;
+    padding: 1em;
+    font-size: 1.5em;
+    font-weight:bold;
+    background-color: #93e2b6;
+    border-radius: 10px;   
+  }
+  
+  .insertLink:hover {
+    background-color: #6ca586
+  }
+    /* Media query for mobile devices */
+    @media only screen and (max-width: 920px) {
+        .insertLink {
+          padding: 0.1em 0.25em;
+          margin: 0.5em auto;
+          
+        }
+      }
+  .updateDeleteLinks{
+    background-color: #93e2b6;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: block;
+    width: 100%;
+    margin: 0.5em auto;
+    text-align: center;
+    text-decoration: none;
+  }
+  .updateDeleteLinks:hover {
+    background-color: #6ca586;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  

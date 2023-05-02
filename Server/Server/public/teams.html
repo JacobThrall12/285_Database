@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Create a Team</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+
+
+<body>
+    <div class="mvpBlock">
+        <h1>Create a Team</h1>
+        <div id='invalidate-form' class='alert-error'></div>
+        <div id="valid-form" class='alert-sucess'></div>
+        <div class="col-12">
+            <a class="insertLink" href="submissions.html">View Pokemon</a>
+        </div>
+        <div class='col-3 overflow'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Team Creator</label>
+                </div>
+                <div class='col-6'>
+                    <input id='creator' type='text' />
+                </div>
+            </div>
+        </div>
+        <div class='col-3 overflow'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Team Name</label>
+                </div>
+                <div class='col-6'>
+                    <input id='team_name' type='text' />
+                </div>
+            </div>
+        </div>
+        <div class='row col-12'>
+            <div class='col-2'>
+                <div class='row'>
+                    <div class='col-6'>
+                        <label>Head Coach</label>
+                    </div>
+                    <div class='col-6'>
+                        <select id='head_coach'>
+                            <option value=''></option>
+                            <option value='Giovanni'>Giovanni</option>
+                            <option value='Steven'>Steven</option>
+                            <option value='Gary'>Gary</option>
+                            <option value='Cynthia'>Cynthia</option>
+                            <option value='Cyrus'>Cyrus</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class='row'>
+        <div class='col-12'>
+            <button id='submit'>Create Team</button>
+        </div>
+    </div>
+    <hr />
+</body>
+<script>
+    const isEmpty = (obj) => Object.keys(obj).length === 0;
+    const errorBanner = document.getElementById('invalidate-form');
+    const successBanner = document.getElementById('valid-form');
+    successBanner.hidden = true;
+    errorBanner.hidden = true;
+
+    document.getElementById('submit').addEventListener('click', (event) => {
+        const formData = new FormData();
+        if (document.getElementById('creator').value.length !== 0) {
+            formData.append('creator', document.getElementById('creator').value);
+        }
+        if (document.getElementById('team_name').value.length !== 0) {
+            formData.append('team_name', document.getElementById('team_name').value);
+        }
+        if (document.getElementById('head_coach').value.length !== 0) {
+            formData.append('head_coach', document.getElementById('head_coach').value);
+        }
+        if(status === 200 || 204){
+                successBanner.innerText = 'Successful Form Submission!';
+                    successBanner.hidden = false;
+                    errorBanner.hidden = true;
+                    
+        }
+
+
+       //Settings for FETCH API request
+       let fetchSettings = {
+            method: 'POST',
+            body: formData
+        };
+
+
+        //Send FETCH API request
+        fetch("http://localhost/teams/", fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            //Logic to display errors on form
+            .then(({ status, json }) => {
+                const errorMessages = document.getElementsByClassName('error-message');
+                errorBanner.hidden = true;
+                for (const htmlElement of errorMessages) {
+                    htmlElement.innerHTML = '&nbsp;';
+                }
+                
+                if (status === 400) {
+                    errorBanner.innerText = 'Form has errors. Please correct them and resubmit.';
+                    errorBanner.hidden = false;
+                    successBanner.hidden = true;
+                    for (const error of json.errors) {
+                        const errorId = error.param + '-error';
+                        document.getElementById(errorId).innerHTML = error.msg;
+                    }
+                }
+           
+        })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        return;
+    });              
+</script>
+
+</html>

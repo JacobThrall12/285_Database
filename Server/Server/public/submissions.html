@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Pokemon Depth Chart</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+
+
+<body>
+    <div class="mvpBlock">
+        <h1>Pokemon Depth Chart</h1>
+        <div class='row'>
+            <div class="col-4">
+                <a class="insertLink" href="insert.html">Add New Pokemon</a>
+            </div>
+            <div class="col-4">
+                <a class="insertLink" href="teams.html">Add New Team</a>
+            </div>
+            <div class="col-4">
+                <a class="insertLink" href="allTeams.html">View Teams</a>
+            </div>
+        </div>
+        
+        <div class='row col-12'>
+            <div class='col-2'>
+                <div class='row'>
+                    <div class='col-6'>
+                        <label>Sort by Type</label>
+                    </div>
+                    <div class='col-6'>
+                        <select id='element'>
+                            <option value=''></option>
+                            <option value='Bug'>Bug</option>
+                            <option value='Dark'>Dark</option>
+                            <option value='Dragon'>Dragon</option>
+                            <option value='Electric'>Electric</option>
+                            <option value='Fighting'>Fighting</option>
+                            <option value='Fire'>Fire</option>
+                            <option value='Flying'>Flying</option>
+                            <option value='Ghost'>Ghost</option>
+                            <option value='Grass'>Grass</option>
+                            <option value='Ground'>Ground</option>
+                            <option value='Ice'>Ice</option>
+                            <option value='Normal'>Normal</option>
+                            <option value='Poison'>Poison</option>
+                            <option value='Phychic'>Phychic</option>
+                            <option value='Water'>Water</option>
+                            <option value='Rock'>Rock</option>
+                            <option value='Steel'>Steel</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class='col-3 overflow'>
+                <div class='row'>
+                    <div class='col-6'>
+                        <label>Search by Name</label>
+                    </div>
+                    <div class='col-6'>
+                        <input id='name' type='text' />
+                    </div>
+                </div>
+            </div>
+            <div class='col-2'>
+                <div class='row'>
+                    <div class='col-6'>
+                        <label>Exclude GRASS types?</label>
+                    </div>
+                    <div class='col-6'>
+                        <input id='type' type='checkbox' />
+                    </div>
+                </div>
+            </div>
+            <div class='col-2'>
+                <div class='row'>
+                    <div class='col-6'>
+                        <label>Sort By Weight</label>
+                    </div>
+                    <div class='col-6'>
+                        <select id='Weight'>
+                            <option value=''></option>
+                            <option value='ASC'>Light</option>
+                            <option value='DESC'>Heavy</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class='col-3'>
+                <div class='row'>
+                    <div class='col-6'>
+                        <label>Sort by Position</label>
+                    </div>
+                    <div class='col-6'>
+                        <select id='position'>
+                            <option value=''></option>
+                            <option value='1'>C</option>
+                            <option value='2'>OG</option>
+                            <option value='3'>OT</option>
+                            <option value='4'>QB</option>
+                            <option value='5'>RB</option>
+                            <option value='6'>WR</option>
+                            <option value='7'>FB</option>
+                            <option value='8'>TE</option>
+                            <option value='9'>DT</option>
+                            <option value='10'>DE</option>
+                            <option value='11'>LB</option>
+                            <option value='12'>CB</option>
+                            <option value='13'>SS</option>
+                            <option value='14'>FS</option>
+                            <option value='15'>K</option>
+                            <option value='16'>P</option>
+                        </select>
+                    </div>
+                </div> -->
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-2'>
+            <label>Limit Number of Rows?</label>
+        </div>
+        <div class='col-10'>
+            <select id='limit'>
+                <option value=''></option>
+                <option value='22'>Limit to 22</option>
+                <option value='11'>Limit to 11</option>
+                <option value='5'>Limit to 5</option>
+                <option value='2'>Limit to 2</option>
+                <option value='1'>Limit to 1</option>
+            </select>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-12'>
+            <button id='submit'>Search for Pokemon</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class='formDataTable'>
+        <div id='newFormData' class='overflow'>
+        </div>
+    </div>
+
+
+
+
+    <hr />
+</body>
+<script>
+    //Hide banner at start of script
+    const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+    document.getElementById('submit').addEventListener('click', () => {
+        //const formData = new FormData();
+        const getParameters = {};
+
+        if (document.querySelector('#type:checked')) {
+            //formData.append('type', 0);
+            getParameters.type = 0;
+        }
+        if (document.getElementById('element').value.length !== 0) {
+            //formData.append('element', document.getElementById('element').value);
+            getParameters.element = document.getElementById('element').value;
+        }
+        if (document.getElementById('name').value.length !== 0) {
+            //formData.append('name', document.getElementById('name').value);
+            getParameters.name = document.getElementById('name').value;
+        }
+
+
+        if (document.getElementById('Weight').value.length !== 0) {
+            //formData.append('Weight', document.getElementById('Weight').value);
+            getParameters.Weight = document.getElementById('Weight').value;
+        }
+        //if (document.getElementById('position').value.length !== 0) {
+        //    formData.append('position', document.getElementById('position').value);
+        //    getParameters.position = document.getElementById('position').value;
+        //}
+        if (document.getElementById('limit').value.length !== 0) {
+            //formData.append('limit', document.getElementById('limit').value);
+            getParameters.limit = document.getElementById('limit').value;
+        }
+
+        let fetchSettings = {
+            method: 'GET',
+        };
+        //This should be in the fetchSettings but it doesn't work idk 
+        fetch("http://localhost/pokemon/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                    ));
+            })
+            .then(({ status, json }) => {
+                {
+                    let displayTable = '';
+                    if (typeof json.data !== 'undefined') {
+                        for (const row of json.data) {
+                            let updateID = row.id;
+                            let deleteID = row.id;
+                            let deleteThis = document.createElement("a");
+                            let update = document.createElement("a");
+                            let pictureTest = document.createElement("img");
+                            pictureTest.src = row.image_urls;
+                            update.innerHTML = 'Update';
+                            update.href = 'update.html?' + 'id=' + updateID;
+                            deleteThis.innerHTML = 'Delete';
+                            deleteThis.href = 'delete.html?' + 'id=' + deleteID;
+                            displayTable += '<div class="card">' +
+                                '<div class="card-header">' +
+                                '<div class="card-header-title">' +
+                                '<div class="title is-4" style="text-align: center;"><strong>' + row.name + '</strong></div>' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="card-image">' + pictureTest.outerHTML + '</div>' +
+                                '<div class="card-content">' +
+                                '<table class="table">' +
+                                '<tbody>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Height:</strong></td>' +
+                                '<td colspan="2">' + (Math.round(row.height * 100) / 100).toFixed(2) + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Weight:</strong></td>' +
+                                '<td colspan="2">' + (Math.round(row.weight * 100) / 100).toFixed(1) + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Primary Type:</strong></td>' +
+                                '<td colspan="2">' + row.primary_type + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Secondary Type:</strong></td>' +
+                                '<td colspan="2">' + row.secondary_type + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2"><strong>Position:</strong></td>' +
+                                '<td colspan="2">' + row.position + '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td colspan="2" ><a class="updateDeleteLinks" href="' + update.href + '">' + update.innerHTML + '</a></td>' +
+                                '<td colspan="2" ><a class="updateDeleteLinks" href="' + deleteThis.href + '">' + deleteThis.innerHTML + '</a></td>' +
+                                '</tr>' +
+                                '</tbody>' +
+                                '</table>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                    }
+                    document.getElementById("newFormData").innerHTML = displayTable;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        return;
+    })
+
+
+</script>
+
+</html>
