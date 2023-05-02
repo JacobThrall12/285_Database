@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Delete Pokemon</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+
+<body>
+    <h1>Do you really want to delete this Pokemon?</h1>
+    <h2><a href="submissions.html">Return to List</a></h2>
+    <div id='invalidate-form' class='alert-error'></div>
+    <div id="valid-form" class='alert-sucess'></div>
+    <hr />
+
+
+
+    <div class='row'>
+        <div class='col-12'>
+            <button id='deleteButton'>ARE YOU SURE TO DELETE?</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <script>
+        const isEmpty = (obj) => Object.keys(obj).length === 0;
+        const errorBanner = document.getElementById('invalidate-form');
+        const sucessBanner = document.getElementById('valid-form');
+        sucessBanner.hidden = true;
+        errorBanner.hidden = true;
+
+        const fetchMethod = (url, fetchParameters, callback) => {
+            fetch(url, fetchParameters)
+                .then((response) => {
+                    return new Promise((resolve) => response.json()
+                        .then((json) => resolve({
+                            status: response.status,
+                            json,
+                        })
+                        ));
+                })
+                .then(({ status, json }) => {
+                    callback(status, json);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        };
+
+        //Search parameters (e.g. www.example.html?id=10; id=10)
+        
+        document.getElementById('deleteButton').addEventListener('click', (event) => {
+            const formData = new FormData();
+            //Settings for FETCH API request
+            let fetchSettings = {
+                method: 'DELETE',
+                body: formData
+            };
+            const urlParams = new URLSearchParams(window.location.search);
+            //Send FETCH API request
+            fetchMethod("http://localhost/pokemon/" + urlParams.get('id') + '/', fetchSettings)
+                .then((response) => {
+                    return new Promise((resolve) => response.json()
+                        .then((json) => resolve({
+                            status: response.status,
+                            json,
+                        })
+                        ));
+                })
+                .then(({ status, json }) => {
+                    const errorMessages = document.getElementsByClassName('error-message');
+                    errorBanner.hidden = true;
+                    for (htmlElement of errorMessages) {
+                        htmlElement.innerHTML = '&nbsp;';
+                    }
+                    if (status === 400) {
+                        errorBanner.innerText = 'Form has errors. Please correct them and resubmit.';
+                        errorBanner.hidden = false;
+                        sucessBanner.hidden = true;
+                        for (error of json.errors) {
+                            const errorId = error.param + '-error';
+                            document.getElementById(errorId).innerHTML = error.msg
+                        }
+                    }
+                    if (200 === status) {
+                        sucessBanner.innerText = 'Deleted Pokemon from Database';
+                        sucessBanner.hidden = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            return;
+        });               
+    </script>
+</body>
+
+</html>

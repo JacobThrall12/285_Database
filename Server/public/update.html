@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Pokemon Depth Chart</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+
+<!--Take out position from this form for final website and assign position with pokemon and team in a third web page-->
+
+<body>
+    <h1>Pokemon Depth Chart</h1>
+    
+
+    <div id='invalidate-form' class='alert-error'></div>
+    <div id="valid-form" class='alert-sucess'></div>
+
+    
+    <div class="row">
+        <div class="col-12">
+            <a class="insertLink" href="submissions.html">View Pokemon in Database?</a>
+        </div>
+    </div>
+    <div class='row col-12'>
+        <div class='col-2'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Select Type 1</label>
+                </div>
+                <div class='col-6'>
+                    <select id='primary_type'>
+                        <option value=''></option>
+                        <option value='Bug'>Bug</option>
+                        <option value='Dark'>Dark</option>
+                        <option value='Dragon'>Dragon</option>
+                        <option value='Electric'>Electric</option>
+                        <option value='Fighting'>Fighting</option>
+                        <option value='Fire'>Fire</option>
+                        <option value='Flying'>Flying</option>
+                        <option value='Ghost'>Ghost</option>
+                        <option value='Grass'>Grass</option>
+                        <option value='Ground'>Ground</option>
+                        <option value='Ice'>Ice</option>
+                        <option value='Normal'>Normal</option>
+                        <option value='Poison'>Poison</option>
+                        <option value='Phychic'>Phychic</option>
+                        <option value='Water'>Water</option>
+                        <option value='Rock'>Rock</option>
+                        <option value='Steel'>Steel</option>
+
+
+                    </select>
+                </div>
+                <div id='primary_type-error' class='col-12 error-message'>&nbsp;</div>
+            </div>
+        </div>
+        <div class='col-2'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Select Type 2 <br> (if only one type please select 'None')</label>
+                </div>
+                <div class='col-6'>
+                    <select id='secondary_type'>
+                        <option value=''></option>
+                        <option value='None'>None</option>
+                        <option value='Bug'>Bug</option>
+                        <option value='Dark'>Dark</option>
+                        <option value='Dragon'>Dragon</option>
+                        <option value='Electric'>Electric</option>
+                        <option value='Fighting'>Fighting</option>
+                        <option value='Fire'>Fire</option>
+                        <option value='Flying'>Flying</option>
+                        <option value='Ghost'>Ghost</option>
+                        <option value='Grass'>Grass</option>
+                        <option value='Ground'>Ground</option>
+                        <option value='Ice'>Ice</option>
+                        <option value='Normal'>Normal</option>
+                        <option value='Poison'>Poison</option>
+                        <option value='Phychic'>Phychic</option>
+                        <option value='Water'>Water</option>
+                        <option value='Rock'>Rock</option>
+                        <option value='Steel'>Steel</option>
+
+
+                    </select>
+                </div>
+                <div id='secondary_type-error' class='col-12 error-message'>&nbsp;</div>
+            </div>
+        </div>
+        <div class='col-3 overflow'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Enter the name of the Pokemon</label>
+                </div>
+                <div class='col-6'>
+                    <input id='name' type='text' />
+                </div>
+                <div id='name-error' class='col-12 error-message'>&nbsp;</div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-6'>
+                <label>Please submit the URL of the pokemon</label>
+            </div>
+            <div class='col-6'>
+                <input id='image_urls' type='text' />
+            </div>
+            <div id='image_urls-error' class='col-12 error-message'>&nbsp;</div>
+        </div>
+        <div class='col-3 overflow'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Enter the height of the Pokemon <br> (Feet and then inches after a decimal point e.g: 4.11
+                        for 4 foot 11 inches)</label>
+                </div>
+                <div class='col-6'>
+                    <input id="height" type="number" placeholder="1.01" step="0.01" />
+                </div>
+                <div id='height-error' class='col-12 error-message'>&nbsp;</div>
+            </div>
+        </div>
+        <div class='col-3 overflow'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Enter the weight of the Pokemon <br> (To the first decimal place)</label>
+                </div>
+                <div class='col-6'>
+                    <input id="weight" type="number" placeholder="100.1" step="0.1" />
+                </div>
+                <div id='weight-error' class='col-12 error-message'>&nbsp;</div>
+            </div>
+        </div>
+        <div class='col-3'>
+            <div class='row'>
+                <div class='col-6'>
+                    <label>Select Position</label>
+                </div>
+                <div class='col-6'>
+                    <select id='position'>
+                        <option value=''></option>
+                        <option value='1'>C</option>
+                        <option value='2'>OG</option>
+                        <option value='3'>OT</option>
+                        <option value='4'>QB</option>
+                        <option value='5'>RB</option>
+                        <option value='6'>WR</option>
+                        <option value='7'>FB</option>
+                        <option value='8'>TE</option>
+                        <option value='9'>DT</option>
+                        <option value='10'>DE</option>
+                        <option value='11'>LB</option>
+                        <option value='12'>CB</option>
+                        <option value='13'>SS</option>
+                        <option value='14'>FS</option>
+                        <option value='15'>K</option>
+                        <option value='16'>P</option>
+                    </select>
+                </div>
+                <div id='position-error' class='col-12 error-message'>&nbsp;</div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <div class='row'>
+        <div class='col-12'>
+            <button id='search'>Update Pokemon Database</button>
+        </div>
+    </div>
+    <script>
+        const errorBanner = document.getElementById('invalidate-form');
+        const successBanner = document.getElementById('valid-form');
+        successBanner.hidden = true;
+        errorBanner.hidden = true;
+        //Custom method for FETCH API functionality 
+        const fetchMethod = (url, fetchParameters, callback) => {
+            fetch(url, fetchParameters)
+                .then((response) => {
+                    return new Promise((resolve) => response.json()
+                        .then((json) => resolve({
+                            status: response.status,
+                            json,
+                        })
+                        ));
+                })
+                .then(({ status, json }) => {
+                    callback(status, json);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        };
+
+        //Search parameters (e.g. www.example.html?id=10; id=10)
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Fetch Pokemon data for the selected ID
+        fetchMethod(
+            'http://localhost/pokemon/',
+            { method: 'GET' },
+            (status, json) => {
+                fetchMethod(
+                    //This is the PATH for the fetch request with :id route 
+                    //localhost/responses/10/
+                    'http://localhost/pokemon/' + urlParams.get('id') + '/',
+                    { method: 'GET' },
+                    (status, json) => {
+                        if (200 === status) {
+                            console.log("Connection made!");
+
+                            document.getElementById('name').value = json.data[0].name;
+                            document.getElementById('image_urls').value = json.data[0].image_urls;
+                            document.getElementById('position').value = json.data[0].position_id;
+                            document.getElementById('height').value = json.data[0].height;
+                            document.getElementById('weight').value = json.data[0].weight;
+                            document.getElementById('primary_type').value = json.data[0].primary_type;
+                            document.getElementById('secondary_type').value = json.data[0].secondary_type;
+
+                            //console.log(json.data);
+                            //console.log(json.data.name);
+                        }
+                    }
+                );
+            }
+        );
+
+        // Update Pokemon data when the search button is clicked
+        document.getElementById('search').addEventListener('click', (event) => {
+            const formData = new FormData();
+
+            if (document.getElementById('primary_type').value.length !== 0) {
+                formData.append('primary_type', document.getElementById('primary_type').value);
+            }
+            if (document.getElementById('secondary_type').value.length !== 0) {
+                formData.append('secondary_type', document.getElementById('secondary_type').value);
+            }
+            if (document.getElementById('name').value.length !== 0) {
+                formData.append('name', document.getElementById('name').value);
+            }
+            if (document.getElementById('image_urls').value.length !== 0) {
+                formData.append('image_urls', document.getElementById('image_urls').value);
+            }
+            if (document.getElementById('height').value.length !== 0) {
+                formData.append('height', document.getElementById('height').value);
+            }
+            if (document.getElementById('weight').value.length !== 0) {
+                formData.append('weight', document.getElementById('weight').value);
+            }
+            if (document.getElementById('position').value.length !== 0) {
+                formData.append('position', document.getElementById('position').value);
+            }
+            if(status === 200 || 204){
+                    successBanner.innerText = 'Successful Form Submission!';
+                        successBanner.hidden = false;
+                        errorBanner.hidden = true;
+                        
+            }
+            
+            //This is an object that represent everything after the
+            // ? in www.example.com?key=value&JC=cool
+            const urlParams = new URLSearchParams(window.location.search);
+
+            fetchMethod(
+                // Example of the type of route with :id route:
+                // http://locahost/responses/10/
+                'http://localhost/pokemon/' + urlParams.get('id') + '/',
+                { method: 'PUT', body: formData },
+                (status, json) => {
+                    const errorMessages = document.getElementsByClassName('error-message');
+                    errorBanner.hidden = true;
+                    for (const htmlElement of errorMessages) {
+                        htmlElement.innerHTML = '&nbsp;';
+                    }
+                    
+                    if (status === 400) {
+                        errorBanner.innerText = 'Form has errors. Please correct them and resubmit.';
+                        errorBanner.hidden = false;
+                        successBanner.hidden = true;
+                        for (const error of json.errors) {
+                            const errorId = error.param + '-error';
+                            document.getElementById(errorId).innerHTML = error.msg;
+                        }
+                    }
+                   
+                })
+               
+        });
+    </script>
+</body>
+
+
+</html>
